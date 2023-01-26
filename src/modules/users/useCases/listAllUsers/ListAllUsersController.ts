@@ -13,9 +13,6 @@ class ListAllUsersController {
         })
       );
     } catch (error) {
-      if (error.name === "notfound") {
-        return response.status(404).json({ error: error.message });
-      }
       return response.status(400).json({ error: error.message });
     }
   }

@@ -11,11 +11,9 @@ class ListAllUsersUseCase {
   execute({ user_id }: IRequest): User[] {
     const requester: User = this.usersRepository.findById(user_id);
     if (!requester) {
-      const error = new Error(
+      throw new Error(
         "Erro ao listar todos os usuários: Usuário que solicitou a ação não existe."
       );
-      error.name = "notfound";
-      throw error;
     }
     if (!requester.admin) {
       throw new Error(
